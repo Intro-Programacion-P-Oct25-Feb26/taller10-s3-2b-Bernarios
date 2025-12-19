@@ -57,7 +57,6 @@ public class Problema04 {
                 if (matrizA[i][j] < matrizB[i][j]) {
                     condicion1 = false;
                 }
-
                 if (matrizA[i][j] > matrizB[i][j]) {
                     condicion2 = true;
                 }
@@ -69,5 +68,4 @@ public class Problema04 {
             System.out.println("\nLa matriz A no es mayor que la matriz B");
         }
     }
-
 }
