@@ -5,77 +5,69 @@
  */
 package paquete4;
 
+import java.util.Locale;
+import java.util.Scanner;
+
 /**
  *
  * @author reroes
  */
 public class Problema04 {
+
     public static void main(String[] args) {
-       
-        int filas = 3;
-        int columnas = 2;
-        
-        int[][] matrizA = new int[filas][columnas];
-        int[][] matrizB = new int[filas][columnas];
+        Scanner entrada = new Scanner(System.in);
+        entrada.useLocale(Locale.US);
 
-        // 1. Leer y almacenar valores de Matriz A
-        System.out.println("Ingreso de datos para Matriz A:");
-        for (int i = 0; i < filas; i++) {
-            for (int j = 0; j < columnas; j++) {
-                System.out.print("A[" + i + "][" + j + "]: ");
-                matrizA[i][j] = leer.nextInt();
+        boolean condicion1 = true;
+        boolean condicion2 = false;
+        int[][] matrizA = new int[3][2];
+        int[][] matrizB = new int[3][2];
+
+        System.out.println("Ingrese los valores para matriz A");
+        for (int i = 0; i < matrizA.length; i++) {
+            for (int j = 0; j < matrizA[i].length; j++) {
+                System.out.printf("Ingrese el valor para [%d][%d]\n", i, j);
+                matrizA[i][j] = entrada.nextInt();
             }
         }
-
-        // 2. Leer y almacenar valores de Matriz B
-        System.out.println("\nIngreso de datos para Matriz B:");
-        for (int i = 0; i < filas; i++) {
-            for (int j = 0; j < columnas; j++) {
-                System.out.print("B[" + i + "][" + j + "]: ");
-                matrizB[i][j] = leer.nextInt();
+        System.out.println("Ingrese los valores para matriz B");
+        for (int i = 0; i < matrizB.length; i++) {
+            for (int j = 0; j < matrizB[i].length; j++) {
+                System.out.printf("Ingrese el valor para [%d][%d]\n", i, j);
+                matrizB[i][j] = entrada.nextInt();
             }
         }
-
-        // 3 y 4. Mostrar matrices
-        System.out.println("\nMATRIZ A:");
-        mostrarMatriz(matrizA);
-        
-        System.out.println("\nMATRIZ B:");
-        mostrarMatriz(matrizB);
-
-        // 5. Comparar matrices según las condiciones
-        boolean siempreMayorOIgual = true;
-        boolean existeUnoEstrictamenteMayor = false;
-
-        for (int i = 0; i < filas; i++) {
-            for (int j = 0; j < columnas; j++) {
-                // Condición 1: Si encontramos un valor menor, ya no cumple "A >= B"
-                if (matrizA[i][j] < matrizB[i][j]) {
-                    siempreMayorOIgual = false;
-                }
-                // Condición 2: Verificar si existe al menos uno mayor
-                if (matrizA[i][j] > matrizB[i][j]) {
-                    existeUnoEstrictamenteMayor = true;
-                }
-            }
-        }
-
-        // Evaluación final
-        System.out.println("\nRESULTADO DE LA COMPARACIÓN:");
-        if (siempreMayorOIgual && existeUnoEstrictamenteMayor) {
-            System.out.println("La matriz A es mayor que la matriz B");
-        } else {
-            System.out.println("La matriz A no es mayor que la matriz B");
-        }
-    }
-
-    // Método auxiliar para imprimir matrices
-    public static void mostrarMatriz(int[][] matriz) {
-        for (int[] fila : matriz) {
-            for (int valor : fila) {
-                System.out.print(valor + "\t");
+        System.out.println("\nMatriz A:");
+        for (int i = 0; i < matrizA.length; i++) {
+            for (int j = 0; j < matrizA[i].length; j++) {
+                System.out.print(matrizA[i][j] + "\t");
             }
             System.out.println();
         }
+        System.out.println("\nMatriz B:");
+        for (int i = 0; i < matrizB.length; i++) {
+            for (int j = 0; j < matrizB[i].length; j++) {
+                System.out.print(matrizB[i][j] + "\t");
+            }
+            System.out.println();
+        }
+        for (int i = 0; i < matrizA.length; i++) {
+            for (int j = 0; j < matrizA[i].length; j++) {
+
+                if (matrizA[i][j] < matrizB[i][j]) {
+                    condicion1 = false;
+                }
+
+                if (matrizA[i][j] > matrizB[i][j]) {
+                    condicion2 = true;
+                }
+            }
+        }
+        if (condicion1 && condicion2) {
+            System.out.println("\nLa matriz A es mayor que la matriz B");
+        } else {
+            System.out.println("\nLa matriz A no es mayor que la matriz B");
+        }
     }
+
 }
